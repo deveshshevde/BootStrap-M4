@@ -1,26 +1,20 @@
 CC=arm-none-eabi-gcc
-MACH=cortex-m4
-CFLAGS= -c -mcpu=$(MACH) -mthumb -mfloat-abi=soft -std=gnu11 -Wall -O0
-LDFLAGS= -mcpu=$(MACH) -mthumb -mfloat-abi=soft --specs=nano.specs -T linker.ld -Wl,-Map=final.map
-LDFLAGS_SH= -mcpu=$(MACH) -mthumb -mfloat-abi=soft --specs=rdimon.specs -T linker.ld -Wl,-Map=final.map
+Mach=cortex-m4
+CFLAGS= -c -mcpu=$(Mach) -mthumb -std=gnu99 -O0 -Wall
 
-all:main.o init.o  final.elf
 
-semi:main.o init.o final_sh.elf
+all : main.o led.o startup.o
 
 main.o:main.c
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) $^ -o $@
 
-init.o:init.c
-	$(CC) $(CFLAGS) -o $@ $^
-	
-final.elf: main.o init.o 
-	$(CC) $(LDFLAGS) -o $@ $^
-	
-final_sh.elf: main.o init.o 
-	$(CC) $(LDFLAGS_SH) -o $@ $^
+led.o:led.c
+	$(CC) $(CFLAGS) $^ -o $@
+startup.o:startup.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+dump-main:
+	arm-none-eabi-objdump -h main.o
 
 clean:
-	rm -rf *.o *.elf
-
-
+	rm -rf *.o 
