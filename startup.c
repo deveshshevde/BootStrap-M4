@@ -1,5 +1,5 @@
 #include <stdint.h>
-
+#include "interrupt.h"
 #define RAM_START 0x20000000
 #define RAM_END   (RAM_START + (96*1024))
 
@@ -18,7 +18,7 @@ void DebugMon_Handler(); __attribute__((alias("Default_Handler")));
 void PendSV_Handler(); __attribute__((alias("Default_Handler")));
 void SysTick_Handler(); __attribute__((alias("Default_Handler")));
 
-uint32_t vectors[] = {
+uint32_t vectors[]  __attribute__ ((section(".vector"))) = {
     STACK_START,
     (uint32_t)&Reset_Handler,
     (uint32_t)&NMI_Handler,
@@ -39,10 +39,5 @@ uint32_t vectors[] = {
 
 
 
-}; __attribute__((section(".vector")))
+}; 
 
-
-
-void Default_Handler(){
-    while(1);
-}
