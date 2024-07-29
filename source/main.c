@@ -1,13 +1,15 @@
 
-#include<stdio.h>
+
 
 #include "led.h"
 #include "uart.h"
 void enable_faults(void);
+typedef unsigned int uint32_t;
 void systick_starts(uint32_t tick_hz);
 
 
-
+void systick_starts(uint32_t tick_hz);
+void enable_faults(void);
 int main(void)
 {
 	enable_faults();

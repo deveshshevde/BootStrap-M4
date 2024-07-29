@@ -4,7 +4,6 @@
 #ifndef STATUS_H_
 #define STATUS_H_
 
-#include <stdint.h>
 typedef enum 
 {   
     s_BUSY,

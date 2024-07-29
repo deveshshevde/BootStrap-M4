@@ -1,6 +1,6 @@
 
-#include <stdint.h>
-
+typedef unsigned int uint32_t;
+typedef unsigned char uint8_t;
 #define SRAM_START  0x20000000U
 #define SRAM_SIZE   (96U * 1024U) //128KB
 #define SRAM_END    ((SRAM_START) + (SRAM_SIZE))
