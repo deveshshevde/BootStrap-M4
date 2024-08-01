@@ -37,6 +37,6 @@ final_sh.elf: main.o led.o stm32_startup.o
 clean:
 	rm -rf *.o *.elf
 
-load:
+load:all
 
-	openocd -f board/stm32f4discovery.cfg 
+	/opt/local/bin/st-flash write final.elf 0x8000000 

@@ -14,9 +14,12 @@ int main(void)
 {
 	enable_faults();
 	systick_starts(1000000);	
-	if(init_led() != s_OK) {
+	if(init_led() == s_OK) {
 		on_led();
 	};	
+	while(1){
+		on_led();
+	}
 }
 
 

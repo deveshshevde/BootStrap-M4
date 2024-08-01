@@ -18,7 +18,7 @@ caddr_t _sbrk(int incr) {
 
 int _write(int file, char *ptr, int len) {
     (void)file; 
-    (void)ptr;  
+    (void)ptr;
     return len; 
 }
 
