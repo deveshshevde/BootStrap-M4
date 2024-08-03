@@ -16,7 +16,7 @@ caddr_t _sbrk(int incr) {
     return (caddr_t)prev_heap_end;
 }
 
-int _write(int file, char *ptr, int len) {
+int _write(int file, const char *ptr, int len) {
     (void)file; 
     (void)ptr;
     return len; 

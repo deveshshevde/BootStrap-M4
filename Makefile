@@ -9,9 +9,9 @@ SRC_DIR = source
 
 
 
-all:main.o led.o stm32_startup.o syscalls.o   final.elf
+all:main.o led.o stm32_startup.o syscalls.o  printf.o   final.elf
 #before link
-semi:main.o led.o stm32_startup.o syscalls.o final_sh.elf 
+semi:main.o led.o stm32_startup.o syscalls.o printf.o final_sh.elf  
 
 
 main.o:$(SRC_DIR)/main.c
@@ -24,6 +24,9 @@ stm32_startup.o:$(SRC_DIR)/stm32_startup.c
 	$(CC) $(CFLAGS) -o $@ $^
 
 syscalls.o:$(SRC_DIR)/syscalls.c
+	$(CC) $(CFLAGS) -o $@ $^
+	
+printf.o:$(SRC_DIR)/printf.c
 	$(CC) $(CFLAGS) -o $@ $^
 	
 

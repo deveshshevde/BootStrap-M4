@@ -3,9 +3,11 @@
 
 #include "led.h"
 #include "uart.h"
+#include "printf.h"
 void enable_faults(void);
 typedef unsigned int uint32_t;
 void systick_starts(uint32_t tick_hz);
+
 
 
 void systick_starts(uint32_t tick_hz);
@@ -20,6 +22,10 @@ int main(void)
 	while(1){
 		on_led();
 	}
+
+	custom_print("const char *f, ...");
+
+	
 }
 
 

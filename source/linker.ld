@@ -2,16 +2,24 @@ ENTRY(Reset_Handler)
 
 MEMORY
 {
-  FLASH(rx):ORIGIN =0x08000000,LENGTH =512K
-  SRAM(rwx):ORIGIN =0x20000000,LENGTH =96K
+  SRAM    (xrw)    : ORIGIN = 0x20000000,   LENGTH = 96K
+  FLASH    (rx)    : ORIGIN = 0x8000000,   LENGTH = 512K
 }
 
 
 SECTIONS
 {
+
+.isr_vector :
+  {
+    . = ALIGN(4);
+    KEEP(*(.isr_vector)) /* Startup code */
+    . = ALIGN(4);
+  } >FLASH
+
   .text :
   {
-    *(.isr_vector)
+  
     *(.text)
 	*(.text.*)
 	*(.init)
