@@ -31,10 +31,10 @@ printf.o:$(SRC_DIR)/printf.c
 	
 
 
-final.elf: main.o led.o stm32_startup.o syscalls.o 
+final.elf: main.o led.o stm32_startup.o printf.o syscalls.o 
 	$(CC) $(LDFLAGS) -o $@ $^
 	
-final_sh.elf: main.o led.o stm32_startup.o 
+final_sh.elf: main.o led.o stm32_startup.o printf.o
 	$(CC) $(LDFLAGS_SH) -o $@ $^
 
 clean:

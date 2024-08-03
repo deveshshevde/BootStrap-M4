@@ -19,11 +19,14 @@ int main(void)
 	if(init_led() == s_OK) {
 		on_led();
 	};	
+
+	
 	while(1){
 		on_led();
+		custom_print("char%c" , 'a');
 	}
 
-	custom_print("const char *f, ...");
+
 
 	
 }

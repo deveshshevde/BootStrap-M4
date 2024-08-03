@@ -66,7 +66,7 @@ u32 format_print(const char c, va_list arg_pointer){
  }
  else if(c=='d')
  {
-    digit_print(va_arg(arg_pointer, int));
+    digit_print(va_arg(arg_pointer, int) , 10);
     counter += 1;
  }
  else
@@ -78,7 +78,7 @@ u32 format_print(const char c, va_list arg_pointer){
 }
 
 void char_print(int c){
-    _write(1, &c, 1);
+    _write(1, (const char *)&c, 1);
 }
 void str_print(char* str){
     int counter = 0;
@@ -87,6 +87,23 @@ void str_print(char* str){
         ++counter;
     }
 }
-void digit_print(int num){
-    _write(1, &num, 1);
+void digit_print(long num ,int base){
+    u32 counter = 0;
+    char *symbols = "0123456789ABCDEF";
+    if(num < 0){
+        _write(1, "-", 1);
+        digit_print(-num , base);
+        counter++;
+    }
+    else if(num<base)
+    {
+        return char_print(symbols[num]);  
+    }
+    else
+    {
+        digit_print(num/base, base);
+        digit_print(num%base, base);
+        counter++;        
+    }
+
 }
