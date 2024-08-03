@@ -7,9 +7,13 @@
 #define GPIOCEN (1<<2)
 
 #define RCC_BASE        0x40023800
+
 #define GPIOC_BASE      0x40020800
 
+
+#define RCC_APB1ENR  *((volatile unsigned long *)(RCC_BASE + 40))
 #define RCC_AHB1ENR     *((volatile unsigned long *)(RCC_BASE + 30))
+
 #define GPIOC_MODER     *((volatile unsigned long *)(GPIOC_BASE + 0x00))
 #define GPIOC_ODR       *((volatile unsigned long *)(GPIOC_BASE + 0x14))
 

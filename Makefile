@@ -1,7 +1,7 @@
 CC=arm-none-eabi-gcc
 MACH=cortex-m4
-CFLAGS= -c -mcpu=$(MACH) -mthumb -mfloat-abi=soft -std=gnu11 -Wall -O0 -Werror  -Wextra -nostdlib -nostdinc -fno-builtin 
-LDFLAGS= -mcpu=$(MACH) -mthumb -mfloat-abi=soft --specs=nano.specs -T $(SRC_DIR)/linker.ld -Wl,-Map=final.map
+CFLAGS= -c -mcpu=$(MACH) -mthumb -mfloat-abi=soft -std=gnu11 -Wall -O0 -Werror  -Wextra -nostdlib -nostdinc -fno-builtin  -ffunction-sections -fdata-sections
+LDFLAGS= -mcpu=$(MACH) -mthumb -mfloat-abi=soft --specs=nano.specs -T $(SRC_DIR)/linker.ld -Wl,-Map=final.map -Wl,--gc-sections
 LDFLAGS_SH= -mcpu=$(MACH) -mthumb -mfloat-abi=soft --specs=rdimon.specs -T $(SRC_DIR)/linker.ld -Wl,-Map=final.map
 
 
@@ -9,9 +9,9 @@ SRC_DIR = source
 
 
 
-all:main.o led.o stm32_startup.o syscalls.o  printf.o   final.elf
+all:main.o led.o stm32_startup.o syscalls.o  printf.o  uart.o  final.elf
 #before link
-semi:main.o led.o stm32_startup.o syscalls.o printf.o final_sh.elf  
+semi:main.o led.o stm32_startup.o syscalls.o printf.o uart.o final_sh.elf  
 
 
 main.o:$(SRC_DIR)/main.c
@@ -29,12 +29,14 @@ syscalls.o:$(SRC_DIR)/syscalls.c
 printf.o:$(SRC_DIR)/printf.c
 	$(CC) $(CFLAGS) -o $@ $^
 	
+uart.o:$(SRC_DIR)/uart.c
+	$(CC) $(CFLAGS) -o $@ $^
+	
 
-
-final.elf: main.o led.o stm32_startup.o printf.o syscalls.o 
+final.elf: main.o led.o stm32_startup.o printf.o syscalls.o uart.o
 	$(CC) $(LDFLAGS) -o $@ $^
 	
-final_sh.elf: main.o led.o stm32_startup.o printf.o
+final_sh.elf: main.o led.o stm32_startup.o printf.o uart.o
 	$(CC) $(LDFLAGS_SH) -o $@ $^
 
 clean:

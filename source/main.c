@@ -19,6 +19,10 @@ int main(void)
 	if(init_led() == s_OK) {
 		on_led();
 	};	
+	if(uart_init() == s_OK) 
+	{
+		custom_print("UART DONE");
+	}
 
 	
 	while(1){
@@ -28,7 +32,6 @@ int main(void)
 
 
 
-	
 }
 
 

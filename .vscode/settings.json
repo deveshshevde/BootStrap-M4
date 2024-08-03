@@ -1,7 +1,8 @@
 {
     "files.associations": {
         "interrupt.h": "c",
-        "printf.h": "c"
+        "printf.h": "c",
+        "status.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
