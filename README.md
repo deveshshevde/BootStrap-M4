@@ -11,7 +11,7 @@ This project demonstrates how to configure and use the UART2 peripheral on an ST
 
 ## Project Structure
 
-- `main.c`: Main application code and peripheral initialization
+- ```main.c```: Main application code and peripheral initialization
 
 ## Code Overview
 
