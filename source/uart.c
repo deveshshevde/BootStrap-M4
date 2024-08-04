@@ -1,7 +1,20 @@
 
 #include "uart.h"
 
-
+/**
+ * Initializes the UART (Universal Asynchronous Receiver/Transmitter) module.
+ *
+ * @return s_OK if the initialization is successful, otherwise an error code.
+ *
+ * @throws None
+ */
+/*
+It enables the clock for GPIOA and USART2 using the RCC_AHB1ENR and RCC_APB1ENR registers, respectively.
+It configures PA2 and PA3 as Alternate Function for UART2 by setting the corresponding bits in the GPIOA_MODER register.
+It sets the AF (Alternate Function) settings for PA2 and PA3 to AF7 (USART2) by modifying the GPIOA_AFRL register.
+It configures the USART2 module by setting the baud rate, enabling TX and RX, and enabling USART2 using the USART2_BRR, USART2_CR1, and USART2_CR1 registers, respectively.
+Finally, it returns s_OK to indicate that the initialization is successf
+*/
 status_t uart_init()
 {
 
@@ -22,7 +35,7 @@ status_t uart_init()
 return s_OK;
 }
 
-
+// Transmits a string of characters via UART.
 status_t UART_TRANSMIT(const char *data){
 
     while(*data != '\0'){

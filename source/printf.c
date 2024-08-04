@@ -31,6 +31,15 @@ registers, which can cause performance issues or even crashes on some platforms.
 */
 
 extern int _write(int file, const char *ptr, int len);
+/**
+ * Prints a formatted string to the console.
+ *
+ * @param f The format string containing placeholders for values to be printed.
+ *
+ * @return The number of characters printed.
+ *
+ * @throws None.
+ */
 u32 custom_print(const char* f , ...)
 {
     va_list arg_pointer;
@@ -50,7 +59,16 @@ u32 custom_print(const char* f , ...)
     return counter;
 }
 
-
+/**
+ * Formats the given character and prints it to the console.
+ *
+ * @param c The character to be formatted.
+ * @param arg_pointer The pointer to the variable argument list.
+ *
+ * @return The number of characters printed.
+ *
+ * @throws None.
+ */
 u32 format_print(const char c, va_list arg_pointer){
 
  u32 counter = 0;
@@ -76,7 +94,15 @@ u32 format_print(const char c, va_list arg_pointer){
  }
  return counter;
 }
-
+/**
+ * Prints a single character to the console.
+ *
+ * @param c The character to be printed.
+ *
+ * @return void
+ *
+ * @throws None.
+ */
 void char_print(int c){
     _write(1, (const char *)&c, 1);
 }
@@ -87,6 +113,16 @@ void str_print(char* str){
         ++counter;
     }
 }
+/**
+ * Prints the digits of a number in base representation.
+ *
+ * @param num The number to be printed.
+ * @param base The base of the number.
+ *
+ * @return void
+ *
+ * @throws None.
+ */
 void digit_print(long num ,int base){
     u32 counter = 0;
     char *symbols = "0123456789ABCDEF";
