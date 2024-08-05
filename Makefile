@@ -9,9 +9,9 @@ SRC_DIR = source
 
 
 
-all:main.o led.o stm32_startup.o syscalls.o  printf.o  uart.o  final.elf
+all:main.o led.o stm32_startup.o syscalls.o  printf.o  uart.o timbase.o core.o final.elf
 #before link
-semi:main.o led.o stm32_startup.o syscalls.o printf.o uart.o final_sh.elf  
+semi:main.o led.o stm32_startup.o syscalls.o printf.o uart.o timbase.o  core.o final_sh.elf  
 
 
 main.o:$(SRC_DIR)/main.c
@@ -32,11 +32,17 @@ printf.o:$(SRC_DIR)/printf.c
 uart.o:$(SRC_DIR)/uart.c
 	$(CC) $(CFLAGS) -o $@ $^
 	
+timbase.o:$(SRC_DIR)/timbase.c
+	$(CC) $(CFLAGS) -o $@ $^
+	
+core.o:$(SRC_DIR)/core.c
+	$(CC) $(CFLAGS) -o $@ $^
+	
 
-final.elf: main.o led.o stm32_startup.o printf.o syscalls.o uart.o
+final.elf: main.o led.o stm32_startup.o printf.o syscalls.o uart.o timbase.o core.o
 	$(CC) $(LDFLAGS) -o $@ $^
 	
-final_sh.elf: main.o led.o stm32_startup.o printf.o uart.o
+final_sh.elf: main.o led.o stm32_startup.o printf.o uart.o timbase.o core.o
 	$(CC) $(LDFLAGS_SH) -o $@ $^
 
 clean:

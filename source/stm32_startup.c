@@ -1,4 +1,4 @@
-
+#include "timbase.h"
 typedef unsigned int uint32_t;
 typedef unsigned char uint8_t;
 #define SRAM_START  0x20000000U
@@ -6,7 +6,6 @@ typedef unsigned char uint8_t;
 #define SRAM_END    ((SRAM_START) + (SRAM_SIZE))
 
 #define STACK_START   SRAM_END
-
 extern uint32_t _etext;
 extern uint32_t _sdata;
 extern uint32_t _edata;
@@ -19,14 +18,14 @@ int main(void);
 void Reset_Handler(void);
 
 void NMI_Handler 					(void) __attribute__ ((weak, alias("Default_Handler")));
-void HardFault_Handler 				(void) __attribute__ ((weak, alias("Default_Handler")));
+void HardFault_Handler(void);
 void MemManage_Handler 				(void) __attribute__ ((weak, alias("Default_Handler")));
 void BusFault_Handler 				(void) __attribute__ ((weak, alias("Default_Handler")));
 void UsageFault_Handler 			(void) __attribute__ ((weak, alias("Default_Handler")));
-void SVC_Handler 					(void) __attribute__ ((weak, alias("Default_Handler")));
+void SVC_Handler(void);
 void DebugMon_Handler 				(void) __attribute__ ((weak, alias("Default_Handler")));
-void PendSV_Handler   				(void) __attribute__ ((weak, alias("Default_Handler")));
-void SysTick_Handler  				(void) __attribute__ ((weak, alias("Default_Handler")));
+void PendSV_Handler(void);
+void SysTick_Handler(void);
 void WWDG_IRQHandler 				(void) __attribute__ ((weak, alias("Default_Handler")));
 void PVD_IRQHandler 				(void) __attribute__ ((weak, alias("Default_Handler")));             
 void TAMP_STAMP_IRQHandler 			(void) __attribute__ ((weak, alias("Default_Handler")));      
@@ -233,10 +232,28 @@ void Reset_Handler(void)
 	{
 		*pDst++ = 0;
 	}
-	
 	main();
 	
 }
+
+void HardFault_Handler(void){
+	while(1);
+}
+
+void SVC_Handler(void){
+	// will perform contrxt switching
+
+}
+
+void PendSV_Handler(void){
+	while(1);
+	
+}
+
+void SysTick_Handler(void){
+	systick_base();
+}
+
 
 
 

@@ -3,7 +3,7 @@
 
 #include "status.h"
 //for uart
-#define GPIOA_BASE      0x40020000
+#define GPIOA_BASE     0x40020000
 #define GPIOA_MODER  *((volatile unsigned long *)(GPIOA_BASE + 0x00))
 #define GPIOA_AFRL   *((volatile unsigned long *)(GPIOA_BASE + 0x20))
 #define RCC_APB1ENR  *((volatile unsigned long *)(RCC_BASE + 40))
