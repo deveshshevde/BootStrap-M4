@@ -23,3 +23,4 @@ void systick_starts(uint32_t tick_hz);
 
 
 void systick_base(void);
+uint32_t get_current_tick();

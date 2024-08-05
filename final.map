@@ -106,6 +106,8 @@ Discarded input sections
  .text          0x00000000        0x0 timbase.o
  .data          0x00000000        0x0 timbase.o
  .bss           0x00000000        0x0 timbase.o
+ .text.get_current_tick
+                0x00000000       0x24 timbase.o
  .text          0x00000000        0x0 core.o
  .data          0x00000000        0x0 core.o
  .bss           0x00000000        0x0 core.o

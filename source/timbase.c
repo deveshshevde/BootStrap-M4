@@ -38,3 +38,10 @@ void systick_starts(uint32_t tick_hz)
 void systick_base(void){
    utick++;
 }
+
+uint32_t get_current_tick(){
+    DisableInterrupts();
+    volatile uint32_t tick = utick;
+    EnableInterrupts();
+    return tick;
+}

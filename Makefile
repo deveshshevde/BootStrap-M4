@@ -10,7 +10,7 @@ SRC_DIR = source
 
 
 all:main.o led.o stm32_startup.o syscalls.o  printf.o  uart.o timbase.o core.o final.elf
-#before link
+
 semi:main.o led.o stm32_startup.o syscalls.o printf.o uart.o timbase.o  core.o final_sh.elf  
 
 
